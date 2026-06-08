@@ -111,7 +111,7 @@ If this system were deployed for a larger audience with a significantly larger c
      You can use ASCII art, a Mermaid diagram, or embed a sketch as an image.
      You'll use this diagram as context when prompting AI tools to implement each stage. -->
 
----
+## ![Pipeline Diagram](Pipeline_Architecture.png)
 
 ## AI Tool Plan
 
