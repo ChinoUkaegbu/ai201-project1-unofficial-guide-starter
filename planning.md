@@ -45,11 +45,13 @@ This project focuses on student experiences with mathematics professors and cour
      numbers fit the structure of your documents.
      A review-heavy corpus warrants different chunking than a long FAQ. -->
 
-**Chunk size:**
+**Chunk size:** 300 tokens
 
-**Overlap:**
+**Overlap:** 50 tokens
 
-**Reasoning:**
+**Reasoning:** The corpus contains two main types of documents: Rate My Professors reviews and Reddit discussion threads. Since Rate My Professors reviews are typically short and focused on a single student experience, each review will be treated as its own chunk. Similarly, Reddit comments often contain a single opinion or recommendation and will be treated as individual chunks whenever possible.
+
+For unusually long Reddit posts or comments that exceed 300 tokens, a sliding-window chunking strategy will be applied with a chunk size of 300 tokens and an overlap of 50 tokens. The overlap helps preserve context when information appears near chunk boundaries.
 
 ---
 
@@ -61,11 +63,14 @@ This project focuses on student experiences with mathematics professors and cour
      would you weigh in choosing a different embedding model — context length, multilingual
      support, accuracy on domain-specific text, latency? -->
 
-**Embedding model:**
+**Embedding model:** all-MiniLM-L6-v2 (via sentence-transformers)
 
-**Top-k:**
+**Top-k:** 3
 
 **Production tradeoff reflection:**
+I chose the all-MiniLM-L6-v2 model because it provides strong semantic search performance while remaining lightweight and easy to run locally. Since the corpus is relatively small and focused on a narrow domain, retrieving the top 3 most relevant chunks should provide enough context to answer most questions while minimizing irrelevant information.
+
+If this system were deployed for a larger audience with a significantly larger corpus, I would consider increasing the retrieval depth or using a more powerful embedding model. Larger embedding models may improve retrieval accuracy and semantic understanding, but they also increase storage requirements, inference time, and computational cost. Other considerations would include multilingual support (for instance not all reviews or discussions I encountered online were in English) and latency requirements.
 
 ---
 
@@ -76,13 +81,13 @@ This project focuses on student experiences with mathematics professors and cour
      is right or wrong. "What are good dining halls?" is too vague.
      "What do students say about wait times at [dining hall name] during lunch?" is testable. -->
 
-| #   | Question | Expected answer |
-| --- | -------- | --------------- |
-| 1   |          |                 |
-| 2   |          |                 |
-| 3   |          |                 |
-| 4   |          |                 |
-| 5   |          |                 |
+| #   | Question                                                                         | Expected answer                                                                                                                        |
+| --- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| 1   | What do students say about Hesam Oveys' exams?                                   | Students say that his exams are extremely difficult, noting that only studying his notes is not enough to pass the exam.               |
+| 2   | Which Linear Algebra professors do NYU students recommend?                       | Fanny Shum and Jose Diaz-Alban are frequently recommended by NYU students.                                                             |
+| 3   | Which Calculus I professors are recommended at NYU?                              | Professors Selin K, Feklistova and Oveys were recommended often by NYU students.                                                       |
+| 4   | What do students say about the undergraduate mathematics program at NYU Courant? | Students describe Courant's applied math program as being generally very well-regarded with the professors being very easy to talk to. |
+| 5   | How do students describe Elizabeth Stepp's teaching style?                       | Students not that she is great at explaining concepts and will take time to make sure students questions are worked out.               |
 
 ---
 
