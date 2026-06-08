@@ -97,9 +97,9 @@ If this system were deployed for a larger audience with a significantly larger c
      Consider: noisy or inconsistent documents, missing source attribution, off-topic
      retrieval, chunks that split key information across boundaries. -->
 
-1.
+1. Student reviews about the same professor may be conflicting as they may have had different experiences. It would be difficult for the system to generate a single definitive answer in those instances.
 
-2.
+2. Reddit comments often include discussions that may not be relevant to the original poster's question. These side-commennts could be retrieved, reducing response quality.
 
 ---
 
@@ -125,8 +125,8 @@ If this system were deployed for a larger audience with a significantly larger c
      "I'll give Claude my Chunking Strategy section and ask it to implement chunk_text()
      with my specified chunk size and overlap" is a plan. -->
 
-**Milestone 3 — Ingestion and chunking:**
+**Milestone 3 — Ingestion and chunking:** I will use Claude to generate code to load the documents, parse them and split chunks according to the chunking strategy I specified above.
 
-**Milestone 4 — Embedding and retrieval:**
+**Milestone 4 — Embedding and retrieval:** I will use Claude to generate code that creates embeddings using the all-MiniLM-L6-v2 model and stores them in a vector index. I will provide the AI tool with the Retrieval Approach section and ask for retrieval code that returns the top 3 most relevant chunks (and I will then verify the implementation by testing the evaluation questions and inspecting retrieved chunks manually).
 
-**Milestone 5 — Generation and interface:**
+**Milestone 5 — Generation and interface:** I will use Claude to generate code that combines retrieved chunks with the user query and passes them to a language model to generate answers. I will provide the Evaluation Plan and ask for a simple interface that displays the generated response and source information. At this stage, I will manually verify that answers remain grounded in retrieved content and that sources are attributed and displayed properly.
