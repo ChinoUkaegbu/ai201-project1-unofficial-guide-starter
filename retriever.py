@@ -42,6 +42,13 @@ def embed_and_store(chunks):
 
 
 def retrieve(query, k=5):
+
+    # SAFETY CHECK
+    if collection.count() == 0:
+        raise ValueError(
+            "Vector database is empty. Run build_index.py first."
+        )
+    
     query_embedding = model.encode([query]).tolist()
 
     results = collection.query(
