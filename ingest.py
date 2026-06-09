@@ -62,7 +62,7 @@ Review:
             chunks.append(
                 {
                     "chunk_id": f"{source_file}_{idx}_{chunk_num}",
-                    "source_type": "rmp",
+                    "source_type": "Rate My Professors",
                     "title": professor,
                     "text": contextualized_text,
                     "raw_text": raw_chunk
@@ -91,7 +91,7 @@ Content:
     chunks.append(
         {
             "chunk_id": f"{source_file}_op",
-            "source_type": "reddit",
+            "source_type": "Reddit",
             "title": title,
             "text": op_text,
             "raw_text": original_post
@@ -122,7 +122,7 @@ Comment:
             chunks.append(
                 {
                     "chunk_id": f"{source_file}_{idx}_{chunk_num}",
-                    "source_type": "reddit",
+                    "source_type": "Reddit",
                     "title": title,
                     "text": contextualized_comment,
                     "raw_text": raw_chunk
