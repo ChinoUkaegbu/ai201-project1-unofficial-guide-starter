@@ -41,7 +41,7 @@ def embed_and_store(chunks):
     print(f"Stored {collection.count()} chunks.")
 
 
-def retrieve(query, k=5):
+def retrieve(query, k=5, source_filter=None):
 
     # SAFETY CHECK
     if collection.count() == 0:
@@ -51,10 +51,16 @@ def retrieve(query, k=5):
     
     query_embedding = model.encode([query]).tolist()
 
+    # Build filter dict if provided
+    where_clause = None
+    if source_filter:
+        where_clause = {"source_type": source_filter}
+
     results = collection.query(
         query_embeddings=query_embedding,
         n_results=k,
-        include=["documents", "metadatas", "distances"]
+        include=["documents", "metadatas", "distances"],
+        where=where_clause
     )
 
     return results
