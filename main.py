@@ -1,6 +1,8 @@
 from ingest import load_and_chunk_documents
 from retriever import embed_and_store, retrieve, print_results
 
+# used to test retrieval
+
 if __name__ == "__main__":
 
     print("Loading chunks...")

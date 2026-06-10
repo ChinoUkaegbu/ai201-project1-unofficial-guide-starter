@@ -154,6 +154,7 @@ def load_and_chunk_documents(data_dir="documents"):
 
     return all_chunks
 
+# used to test ingestion
 
 if __name__ == "__main__":
 

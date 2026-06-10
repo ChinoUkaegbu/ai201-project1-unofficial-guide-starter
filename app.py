@@ -1,6 +1,7 @@
 from retriever import retrieve
 from generator import generate_answer
 
+# used to test generation
 
 def answer_question(query):
 
